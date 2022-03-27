@@ -16,7 +16,7 @@ var searchHistoryArray = []
 var formSubmitHandler = function (event) {
     event.preventDefault ();
     // city name coming from the input element 
-    var cityname = cityNameInputEl.ariaValueMax.trim();
+    var cityname = cityNameInputEl.value.trim();
 
     // city name goes in local storage to make history buttons
     if (cityname) {
@@ -39,7 +39,7 @@ var formSubmitHandler = function (event) {
 // getting the weather information
 
 var getWeatherInfo = function (cityname) {
-    var apiCityUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityname + "&units=imperial&appid=7c4a4befbfd432587f686fcf4848cf16"
+    var apiCityUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityname + "&units=imperial&appid=7c4a4befbfd432587f686fcf4848cf16";
     fetch(
         // use city name to find longitute and latitude 
         apiCityUrl
@@ -58,6 +58,7 @@ var getWeatherInfo = function (cityname) {
             var date = (today.getMonth() + 1) + '/' + today.getDate() + '/' + today.getFullYear();
             var weatherIcon = cityResponse.weather[0].icon; 
             var weatherDescription = cityResponse.weather[0].description;
+            var weatherIconLink = "<img src= assets/images/openweather.png" + weatherIcon + "@2x.png' alt='" + weatherDescription + "' title='" + weatherDescription + "' />"
             
             // clear element to make room for new data
             currentWeatherEl.textContent = "";
