@@ -47,7 +47,7 @@ var getWeatherInfo = function (cityname) {
         .then(function (cityResponse) {
             return cityResponse.json();
         })
-        .then(functiom (cityResponse) ,{
+        .then(function (cityResponse) {
             // variables for longitute and latitude of the city 
             console.log(cityResponse)
             var latitude = cityResponse.coord.lat;
