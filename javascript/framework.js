@@ -69,7 +69,7 @@ var getWeatherInfo = function (cityname) {
 
            // shows weather card
             currentWeatherCardEl.classList.remove("hidden");
-            fiveDayCardEl.classlist.remove("hidden");
+            fiveDayCardEl.classList.remove("hidden");
 
             // return a fetch request using latitude and longitude  form previous fetching
             return fetch('https://api.openweathermap.org/data/2.5/onecall?lat=' + latitude + '&lon=' + longitude + '&exclude=alerts,minutely,hourly&units=imperial&appid=7c4a4befbfd432587f686fcf4848cf16');   
@@ -101,8 +101,14 @@ var displayWeather = function (weather) {
     // to show the hummidity 
     var humidity = document.createElement('p');
     humidity.id = "humidity";
-    humidity.innerHTML = "<strong>Humidity:</strong> " + weather.current.wind_speed.toFixed(1) + "MPH";
-    currentWeatherEl.appendChild(windSpeed);
+    humidity.innerHTML = "<strong>Humidity:</strong> " + weather.current.humidity + "%";
+    currentWeatherEl.appendChild(humidity);
+
+// showing the wind speed 
+    var windSpeed = document.createElement('p');
+    windSpeed.id = "wind-speed";
+    windSpeed.innerHTML = "<strong>Wind Speed:</strong> " + weather.current.wind_speed.toFixed(1) + "MPH"; 
+    currentWeatherEl.appendChild(windSpeed); 
 
     // to show the UV 
     var uvIndex = document.createElement('p');
@@ -125,7 +131,7 @@ var displayWeather = function (weather) {
 
     // day "cards" for the extended forecast 
     for (let i = 0; i < forecastArray.length - 3; i++) {
-        var date = (today.getMonth() + 1) + '/' + (today.getDate () + i + 1) + '/' + today.getFullYear();
+        var date = (today.getMonth() + 1) + '/' + (today.getDate() + i + 1) + '/' + today.getFullYear();
         var weatherIcon = forecastArray[i].weather[0].icon;
         var weatherDescription = forecastArray[i].weather[0].description;
         var weatherIconLink = "<img src=assets/images/openweather.png" + weatherIcon + "@2x.png' alt='" + weatherDescription + "' title ='" + weatherDescription + "' />"
@@ -133,8 +139,8 @@ var displayWeather = function (weather) {
         dayEl.className = "day";
         dayEl.innerHTML = "<p><strong>" + date + "</strong></p>" + 
             "<p>" + weatherIconLink + "</p>" +
-            "<p><strong>Temp:</strong> " + forcastArray[i].temp.day.toFixed(1) + "°F</p>" + 
-            "<p><strong>Humidity:</strong> " + forcastArry[i].humidity + "%</p>"
+            "<p><strong>Temp:</strong> " + forecastArray[i].temp.day.toFixed(1) + "°F</p>" + 
+            "<p><strong>Humidity:</strong> " + forecastArray[i].humidity + "%</p>"
 
             fiveDayEl.appendChild(dayEl);
     }
