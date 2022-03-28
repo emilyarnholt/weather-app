@@ -1,6 +1,6 @@
 var today = new Date();
 var cityFormEl = document.querySelector("#city-form");
-var cityNameInputEl = document.querySelector("cityname");
+var cityNameInputEl = document.querySelector("#cityname");
 var currentWeatherEl = document.querySelector('#current-weather');
 var currentWeatherCardEl = document.querySelector("#current-weather-card")
 var fiveDayCardEl = document.querySelector("#five-day-card");
@@ -21,7 +21,7 @@ var formSubmitHandler = function (event) {
     // city name goes in local storage to make history buttons
     if (cityname) {
         searchHistoryArray.push(cityname); 
-        localStorage.setItem("weatherSearch", JSON.stringify(searchHistoryArrary));
+        localStorage.setItem("weatherSearch", JSON.stringify(searchHistoryArray));
         var searchHistoryEl = document.createElement('button');
         searchHistoryEl.className = "btn";
         searchHistoryEl.setAttribute("data-city", cityname)
